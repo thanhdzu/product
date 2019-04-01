@@ -19,18 +19,21 @@ export default class addproduct extends Component {
         let data = this.state.product;
         data[event.target.name] = event.target.value;
         //console.log(data);
-        this.setState({product: data})
+        this.setState({ product: data })
         //console.log(JSON.stringify(this.state.product));
     }
 
-    addProduct(){
-        const requestOption={
+    addProduct() {
+        const requestOption = {
             method: 'post',
             body: JSON.stringify(this.state.product),
-            headers:{'Content-Type': 'application/json'}
+            headers: { 'Content-Type': 'application/json' }
         };
 
-        return fetch('http://localhost:3000/product/', requestOption).then( res => res.json());
+        return fetch('http://localhost:3000/product/', requestOption).then(res => {
+            res.json();
+            this.props.action('added');
+        });
     }
 
     formSubmit(event) {
@@ -39,7 +42,7 @@ export default class addproduct extends Component {
     }
     productForm() {
         return (
-            <form onSubmit = {this.formSubmit}>
+            <form onSubmit={this.formSubmit}>
                 <input
                     type="text"
                     name="name"

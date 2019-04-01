@@ -9,6 +9,14 @@ export default class productlist extends Component {
         this.getProductList = this.getProductList.bind(this);
         this.productList = this.productList.bind(this);
     }
+    
+    componentWillReceiveProps(nextProps){
+        if(nextProps.isAdd=== true){
+            this.getProductList();
+        }
+    }
+
+
     getProductList() {
         fetch('http://localhost:3000/product').then(res => res.json())
             .then(res => {

@@ -7,12 +7,20 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      isAdd: false,
     }
     
   }
   componentDidMount(){
     //this.getProductList();
     //console.log(this.state.product);
+  }
+
+  thanhdzu = (datafromchid) => {
+    console.log(datafromchid);
+    this.setState({
+      isAdd: true
+    })
   }
 
   getObjectByID(arr,id) {
@@ -23,8 +31,8 @@ class App extends Component {
     
     return (
       <div className="App">
-        <ProductList  />
-        <AddProduct />
+        <ProductList isAdd={this.state.isAdd} />
+        <AddProduct action={this.thanhdzu} />
         <ProductUpdate />
       </div>
     );
