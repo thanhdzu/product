@@ -1,40 +1,35 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router } from "react-router-dom";
 import './App.css';
 import ProductList from './components/productlist';
 import AddProduct from './components/addproduct';
-import ProductUpdate from './components/productupdate';
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       isAdd: false,
     }
-    
-  }
-  componentDidMount(){
-    //this.getProductList();
-    //console.log(this.state.product);
+
   }
 
-  thanhdzu = (datafromchid) => {
-    console.log(datafromchid);
+  addFromChild = (datafromchid) => {
+    console.log('added', datafromchid);
     this.setState({
       isAdd: true
     })
   }
-
-  getObjectByID(arr,id) {
-    let obj = arr.find((e) => e.id===id );
-    return obj
-  }
+  
+ 
   render() {
-    
+
     return (
-      <div className="App">
-        <ProductList isAdd={this.state.isAdd} />
-        <AddProduct action={this.thanhdzu} />
-        <ProductUpdate />
-      </div>
+      <Router>
+        <div className="App">
+          <ProductList isAdd={this.state.isAdd}  isUpdate = {this.state.isUpdate}/>
+          <AddProduct action={this.addFromChild} />
+          {/* <ProductUpdate action = {this.updateFromChild} /> */}
+        </div>
+      </Router>
     );
   }
 }

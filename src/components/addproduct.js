@@ -32,7 +32,7 @@ export default class addproduct extends Component {
 
         return fetch('http://localhost:3000/product/', requestOption).then(res => {
             res.json();
-            this.props.action('added');
+            this.props.action(this.state.product);
         });
     }
 
